@@ -16,15 +16,18 @@ class DreadCache:
 
     async def _update_data(self):
         async with aiohttp.ClientSession() as session:
+            print('requesting game')
             response = await session.get(
                 TWITCH_DREAD_URL,
                 headers={'Client-ID': TWITCH_API_KEY}
             )
         dread_data = await response.json()
+        print('print data', dread_data)
         dread_data = dread_data['data'][0]
 
         game_id = dread_data['game_id']
         async with aiohttp.ClientSession() as session:
+            print('requesting game_id for', game_id)
             game_list_response = await session.get(
                 TWITCH_GAME_URL,
                 params={'id': game_id},

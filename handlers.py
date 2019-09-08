@@ -4,7 +4,8 @@ import logic
 
 
 async def ping(request) -> web.Response:
-    return web.json_response({'playing': ''})
+    game_name = await request.app.dread_cache.get_data()
+    return web.json_response({'playing': game_name})
 
 
 async def alice_twitch_get(request) -> web.Response:
