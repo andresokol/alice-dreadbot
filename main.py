@@ -7,6 +7,10 @@ async def ping(request) -> web.Response:
     return web.json_response({'status': 'ok'})
 
 
+async def alice_twitch(request) -> web.Response:
+    return web.Response(text='ОК')
+
+
 def create_app() -> web.Application:
     app = web.Application()
 
