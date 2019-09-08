@@ -1,6 +1,9 @@
 from aiohttp import web
 import asyncio
+import os
 import uvloop
+
+PORT = os.getenv('PORT', 8080)
 
 
 async def ping(request) -> web.Response:
@@ -23,4 +26,4 @@ def create_app() -> web.Application:
 if __name__ == '__main__':
     asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
     app = create_app()
-    web.run_app(app=app)
+    web.run_app(app=app, port=PORT)
