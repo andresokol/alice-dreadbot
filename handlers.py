@@ -15,13 +15,15 @@ async def alice_twitch_get(request) -> web.Response:
 
 async def alice_twitch_post(request) -> web.Response:
     body = await request.json()
+
+    text, end_session = await logic.prepare_response(body['request'],
+                                                     request.app.dread_cache)
     response = {
         'version': body['version'],
         'session': body['session'],
         'response': {
-            'end_session': False,
-            'text': await logic.prepare_response(body['request'],
-                                                 request.app.dread_cache)
+            'end_session': end_session,
+            'text': text
         }
     }
     return web.json_response(response)
