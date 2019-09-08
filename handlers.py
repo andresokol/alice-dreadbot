@@ -19,7 +19,7 @@ async def alice_twitch_post(request) -> web.Response:
         'session': body['session'],
         'response': {
             'end_session': False,
-            'text': logic.prepare_response(body['request'])
+            'text': await logic.prepare_response(body['request'])
         }
     }
     return web.json_response(response)
