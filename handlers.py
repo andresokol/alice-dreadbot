@@ -4,7 +4,7 @@ import logic
 
 
 async def ping(request) -> web.Response:
-    return web.json_response({'status': 'ok'})
+    return web.json_response({'playing': ''})
 
 
 async def alice_twitch_get(request) -> web.Response:
