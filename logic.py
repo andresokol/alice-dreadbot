@@ -14,5 +14,10 @@ async def prepare_response(request: dict, dread_cache) -> (str, bool):
         if word in request['nlu']['tokens']:
             return FAREWELL_MESSAGE, True
 
+    prefix = ''
+    if ('что' not in request['nlu']['tokens'] and
+            'стримит' not in request['nlu']['tokens']):
+        prefix = 'Этого не знаю, но могу точно сказать, что '
+
     game_name = await dread_cache.get_data()
-    return f'Дред стримит {game_name}', False
+    return f'{prefix}Дред стримит {game_name}', False
