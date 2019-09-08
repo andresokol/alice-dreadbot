@@ -18,7 +18,8 @@ def create_app() -> web.Application:
     app = web.Application()
 
     app.router.add_get('/', ping)
-    app.router.add_get('/get_alice/', alice_twitch)
+    app.router.add_get('/alice-twitch/', alice_twitch)
+    app.router.add_post('/alice-twitch/', alice_twitch)
 
     return app
 
